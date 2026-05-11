@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F77F8468-1E7A-47A9-8DDF-AFC5AB5F8B0C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>I2S.SQL.COMMON.DATA.OraData</RootNamespace>
+    <AssemblyName>I2S.SQL.COMMON.DATA.OraData</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>C:\EBAP-CORE.NET\Datadll\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>C:\EBAP-CORE.NET\Datadll\I2S.SQL.COMMON.DATA.OraData.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="01.Base\Q_CAR_MASTER.cs" />
+    <Compile Include="10.Item\Q_Product.cs" />
+    <Compile Include="20.Prod\Q_Bin.cs" />
+    <Compile Include="20.Prod\Q_INGRED.cs" />
+    <Compile Include="20.Prod\Q_MIX_RESULT.cs" />
+    <Compile Include="20.Prod\Q_MIX_SETTING.cs" />
+    <Compile Include="20.Prod\Q_Scale.cs" />
+    <Compile Include="20.Prod\Q_WORK_DETAIL.cs" />
+    <Compile Include="20.Prod\Q_WORK_ORDER.cs" />
+    <Compile Include="00.Common\Q_Assembly.cs" />
+    <Compile Include="00.Common\Q_AuthGroup.cs" />
+    <Compile Include="00.Common\Q_AuthGroupMenu.cs" />
+    <Compile Include="00.Common\Q_AuthGroupUser.cs" />
+    <Compile Include="00.Common\Q_CodeMaster.cs" />
+    <Compile Include="00.Common\Q_CurrentUserInfo.cs" />
+    <Compile Include="00.Common\Q_HtmlContentsMaster.cs" />
+    <Compile Include="00.Common\Q_LinkMenu.cs" />
+    <Compile Include="00.Common\Q_LocaleMaster.cs" />
+    <Compile Include="00.Common\Q_LocaleMessageMaster.cs" />
+    <Compile Include="00.Common\Q_MenuLog.cs" />
+    <Compile Include="00.Common\Q_MenuMaster.cs" />
+    <Compile Include="00.Common\Q_MyMenu.cs" />
+    <Compile Include="00.Common\Q_Notify.cs" />
+    <Compile Include="00.Common\Q_PlantAuth.cs" />
+    <Compile Include="00.Common\Q_QueryMaster.cs" />
+    <Compile Include="00.Common\Q_ScreenColumnSet.cs" />
+    <Compile Include="00.Common\Q_ScreenColumnSetDetail.cs" />
+    <Compile Include="00.Common\Q_ScreenMaster.cs" />
+    <Compile Include="00.Common\Q_UserCell.cs" />
+    <Compile Include="00.Common\Q_UserInfo.cs" />
+    <Compile Include="00.Common\Q_VendorAuth.cs" />
+    <Compile Include="ProductInfo\Q_Company.cs" />
+    <Compile Include="ProductInfo\Q_Scale.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System\Windows\Forms.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Collection\I2S.SQL.COMMON.DATA.Collection.csproj">
+      <Project>{08F76111-907E-41CB-B923-61BE6BA06ADA}</Project>
+      <Name>I2S.SQL.COMMON.DATA.Collection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OraCommon\I2S.SQL.COMMON.DATA.OraCommon.csproj">
+      <Project>{b9427a4a-0b97-487b-9a70-05409123b6b0}</Project>
+      <Name>I2S.SQL.COMMON.DATA.OraCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="30.Result\" />
+    <Folder Include="40.InOut\" />
+    <Folder Include="50.Report\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
