@@ -47,7 +47,7 @@
         {
             queryText = string.Empty;
 
-            queryText = @"MERGE INTO KFATOCHANG.SCALE d
+            queryText = @"MERGE INTO SCALE d
                         USING (
                           Select
                             :SCALE_CODE         as SCALE_CODE,

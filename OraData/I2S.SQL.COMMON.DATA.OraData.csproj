@@ -43,7 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="01.Base\Q_CAR_MASTER.cs" />
-    <Compile Include="10.Item\Q_Product.cs" />
+    <Compile Include="01.Base\Q_COMMON_CODE.cs" />
+    <Compile Include="10.Item\Q_MATERIALS.cs" />
     <Compile Include="20.Prod\Q_Bin.cs" />
     <Compile Include="20.Prod\Q_INGRED.cs" />
     <Compile Include="20.Prod\Q_MIX_RESULT.cs" />
