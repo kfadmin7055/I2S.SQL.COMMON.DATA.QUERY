@@ -6,7 +6,7 @@
     /// <summary>
     /// MATERIALS 테이블 쿼리
     /// </summary>
-    public static class Q_MATERIALS
+    public static class Q_PRODUCT
     {
         static string queryText = string.Empty;
 
@@ -19,11 +19,11 @@
             queryText = $@"
             /* {reference} */
             SELECT PLANT_CODE
-                , MATERIAL_TYPE
-                , MATERIAL_CODE
-                , MATERIAL_NAME
+                , PRODUCT_TYPE
+                , PRODUCT_CODE
+                , PRODUCT_NAME
                 , UOM
-                , MATERIALS
+                , PRODUCT_GROUP
                 , FEED_FORM
                 , MIX_TIME
                 , DRY_TIME
@@ -31,11 +31,11 @@
                 , SORTER_YN
                 , REMARKS
                 , USE_YN
-                , I_DTTM
-                , U_DTTM
-                , I_USER
-                , U_USER
-            FROM MATERIALS
+                , INITBY
+                , UPBY
+                , UPDTTM
+                , INITDTTM
+            FROM PRODUCT
             ";
 
             return queryText;
