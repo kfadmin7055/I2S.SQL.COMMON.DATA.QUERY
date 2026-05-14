@@ -1,6 +1,9 @@
-﻿namespace I2S.SQL.COMMON.DATA.OraData.Item
+﻿using System.Data;
+using System.Xml;
+
+namespace I2S.SQL.COMMON.DATA.OraData.Item
 {
-    #region :: I2S.SQL.COMMON.DATA.OraData.Base.Q_MATERIALS ::
+    #region :: I2S.SQL.COMMON.DATA.OraData.Base.Q_PRODUCT ::
 
 
     /// <summary>
@@ -30,12 +33,15 @@
                 , FINAL_TIME
                 , SORTER_YN
                 , REMARKS
-                , USE_YN
+                , USEFLAG
                 , INITBY
-                , UPBY
-                , UPDTTM
-                , INITDTTM
+                , NVL(UPBY, INITBY) AS CHANGEBY
+                , NVL(UPDTTM, INITDTTM) AS INITDTTM
             FROM PRODUCT
+            WHERE PLANT_CODE = :PLANT_CODE
+                AND (:PRODUCT_TYPE IS NULL OR PRODUCT_TYPE = :PRODUCT_TYPE)
+                AND PRODUCT_NAME LIKE '%' || :PRODUCT_NAME || '%'
+                AND PRODUCT_CODE LIKE '%' || :PRODUCT_CODE || '%'
             ";
 
             return queryText;
@@ -53,74 +59,72 @@
             queryText = string.Empty;
 
             queryText = @"
-            MERGE INTO MATERIALS d
-            USING (SELECT        :PLANT_CODE as PLANT_CODE
-                        ,        :MATERIAL_TYPE as MATERIAL_TYPE
-                        ,        :MATERIAL_CODE as MATERIAL_CODE
-                        ,        :MATERIAL_NAME as MATERIAL_NAME
-                        ,        :UOM as UOM
-                        ,        :PRODUCT as PRODUCT
-                        ,        :FEED_FORM as FEED_FORM
-                        ,        :MIX_TIME as MIX_TIME
-                        ,        :DRY_TIME as DRY_TIME
-                        ,        :FINAL_TIME as FINAL_TIME
-                        ,        :SORTER_YN as SORTER_YN
-                        ,        :REMARKS as REMARKS
-                        ,        :USE_YN as USE_YN
-                        ,        :CHANGEDTTM as CHANGEDTTM
-                        ,        :CHANGEUSER as CHANGEUSER
-                          FROM DUAL) s
+            MERGE INTO PRODUCT d
+                    USING (SELECT        :PLANT_CODE AS PLANT_CODE
+                                ,        :PRODUCT_TYPE AS PRODUCT_TYPE
+                                ,        :PRODUCT_CODE AS PRODUCT_CODE
+                                ,        :PRODUCT_NAME AS PRODUCT_NAME
+                                ,        :UOM AS UOM
+                                ,        :PRODUCT_GROUP AS PRODUCT_GROUP
+                                ,        :FEED_FORM AS FEED_FORM
+                                ,        :MIX_TIME AS MIX_TIME
+                                ,        :DRY_TIME AS DRY_TIME
+                                ,        :FINAL_TIME AS FINAL_TIME
+                                ,        :SORTER_YN AS SORTER_YN
+                                ,        :REMARKS AS REMARKS
+                                ,        :USEFLAG AS USEFLAG
+                                ,        SYSDATE AS CHANGEDTTM
+                                ,        :CHANGEBY AS CHANGEBY
+                            FROM DUAL) s
                     ON (d.PLANT_CODE = s.PLANT_CODE
-                        AND d.MATERIAL_TYPE = s.MATERIAL_TYPE
-                        AND d.MATERIAL_CODE = s.MATERIAL_CODE)
+                        AND d.PRODUCT_TYPE = s.PRODUCT_TYPE
+                        AND d.PRODUCT_CODE = s.PRODUCT_CODE)
             WHEN MATCHED
             THEN
-                UPDATE SET d.MATERIAL_NAME = s.MATERIAL_NAME
-                         , d.UOM = s.UOM
-                         , d.PRODUCT = s.PRODUCT
-                         , d.FEED_FORM = s.FEED_FORM
-                         , d.MIX_TIME = s.MIX_TIME
-                         , d.DRY_TIME = s.DRY_TIME
-                         , d.FINAL_TIME = s.FINAL_TIME
-                         , d.SORTER_YN = s.SORTER_YN
-                         , d.REMARKS = s.REMARKS
-                         , d.USE_YN = s.USE_YN
-                         , d.I_USER = s.CHANGEDTTM
-                         , d.U_USER = s.CHANGEUSER
+                UPDATE SET d.PRODUCT_NAME = s.PRODUCT_NAME
+                            , d.UOM = s.UOM
+                            , d.PRODUCT_GROUP = s.PRODUCT_GROUP
+                            , d.FEED_FORM = s.FEED_FORM
+                            , d.MIX_TIME = s.MIX_TIME
+                            , d.DRY_TIME = s.DRY_TIME
+                            , d.FINAL_TIME = s.FINAL_TIME
+                            , d.SORTER_YN = s.SORTER_YN
+                            , d.REMARKS = s.REMARKS
+                            , d.USEFLAG = s.USEFLAG
+                            , d.UPDTTM = s.CHANGEDTTM
+                            , d.UPBY = s.CHANGEBY
             WHEN NOT MATCHED
             THEN
                 INSERT     (PLANT_CODE
-                          , MATERIAL_TYPE
-                          , MATERIAL_CODE
-                          , MATERIAL_NAME
-                          , UOM
-                          , PRODUCT
-                          , FEED_FORM
-                          , MIX_TIME
-                          , DRY_TIME
-                          , FINAL_TIME
-                          , SORTER_YN
-                          , REMARKS
-                          , USE_YN
-                          , I_DTTM
-                          , I_USER)
-                    VALUES (
-                            s.PLANT_CODE
-                          , s.MATERIAL_TYPE
-                          , s.MATERIAL_CODE
-                          , s.MATERIAL_NAME
-                          , s.UOM
-                          , s.PRODUCT
-                          , s.FEED_FORM
-                          , s.MIX_TIME
-                          , s.DRY_TIME
-                          , s.FINAL_TIME
-                          , s.SORTER_YN
-                          , s.REMARKS
-                          , s.USE_YN
-                          , s.CHANGEDTTM
-                          , s.CHANGEUSER
-                           )
+                            , PRODUCT_TYPE
+                            , PRODUCT_CODE
+                            , PRODUCT_NAME
+                            , UOM
+                            , PRODUCT_GROUP
+                            , FEED_FORM
+                            , MIX_TIME
+                            , DRY_TIME
+                            , FINAL_TIME
+                            , SORTER_YN
+                            , REMARKS
+                            , USEFLAG
+                            , INITDTTM
+                            , INITBY)
+                    VALUES (s.PLANT_CODE
+                            , s.PRODUCT_TYPE
+                            , s.PRODUCT_CODE
+                            , s.PRODUCT_NAME
+                            , s.UOM
+                            , s.PRODUCT_GROUP
+                            , s.FEED_FORM
+                            , s.MIX_TIME
+                            , s.DRY_TIME
+                            , s.FINAL_TIME
+                            , s.SORTER_YN
+                            , s.REMARKS
+                            , s.USEFLAG
+                            , s.CHANGEDTTM
+                            , s.CHANGEBY)
             ";
 
             return queryText;
@@ -136,8 +140,11 @@
         {
             queryText = string.Empty;
 
-            queryText = @"DELETE FROM MATERIALS
-                            ";
+            queryText = @"
+            DELETE FROM PRODUCT
+            WHERE PLANT_CODE = :PLANT_CODE
+                AND PRODUCT_CODE = :PRODUCT_CODE
+            ";
             return queryText;
         }
         #endregion

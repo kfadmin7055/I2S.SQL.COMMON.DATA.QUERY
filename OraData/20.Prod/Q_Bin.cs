@@ -36,7 +36,7 @@ namespace I2S.SQL.COMMON.DATA.OraData.Dosing
                            a.JOG_ON_TIME, a.DROP_SAFE_T, a.BAG_FAIL, 
                            a.BAG_ROW_RATE, a.BAG_S_ON, a.BAG_S_OFF, 
                            a.PROCESS_KEY, a.SEQ, a.BIN_GUBUN, 
-                           a.PLC_ADDRESS, a.ERP_BIN_CODE, a.USE_YN
+                           a.PLC_ADDRESS, a.ERP_BIN_CODE, a.USEFLAG
                             , NVL(A.UPDTTM, A.INITDTTM) CHANGEDTTM
 	                        , NVL(A.UPBY, A.INITBY) CHANGEBY
                         FROM BIN a
@@ -151,7 +151,7 @@ namespace I2S.SQL.COMMON.DATA.OraData.Dosing
                             :BIN_GUBUN      AS BIN_GUBUN,
                             :PLC_ADDRESS    AS PLC_ADDRESS,
                             :ERP_BIN_CODE   AS ERP_BIN_CODE,
-                            :USE_YN         AS USE_YN,
+                            :USEFLAG         AS USEFLAG,
                             SYSDATE         as CHANGEDTTM,
                             :CHANGEBY       as CHANGEBY
                           From Dual) s
@@ -191,7 +191,7 @@ namespace I2S.SQL.COMMON.DATA.OraData.Dosing
                           d.BIN_GUBUN = s.BIN_GUBUN,
                           d.PLC_ADDRESS = s.PLC_ADDRESS,
                           d.ERP_BIN_CODE = s.ERP_BIN_CODE,
-                          d.USE_YN = s.USE_YN,
+                          d.USEFLAG = s.USEFLAG,
                           d.UPDTTM = s.CHANGEDTTM,
                           d.UPBY = s.CHANGEBY
                         WHEN NOT MATCHED
@@ -207,7 +207,7 @@ namespace I2S.SQL.COMMON.DATA.OraData.Dosing
                           JOG_ON_TIME, DROP_SAFE_T, BAG_FAIL,
                           BAG_ROW_RATE, BAG_S_ON, BAG_S_OFF,
                           PROCESS_KEY, SEQ, BIN_GUBUN,
-                          PLC_ADDRESS, ERP_BIN_CODE, USE_YN,
+                          PLC_ADDRESS, ERP_BIN_CODE, USEFLAG,
                           INITDTTM, INITBY)
                         VALUES (
                           s.BIN_CODE, s.BIN_NAME, s.BIN_SERIAL,
@@ -220,7 +220,7 @@ namespace I2S.SQL.COMMON.DATA.OraData.Dosing
                           s.JOG_ON_TIME, s.DROP_SAFE_T, s.BAG_FAIL,
                           s.BAG_ROW_RATE, s.BAG_S_ON, s.BAG_S_OFF,
                           s.PROCESS_KEY, s.SEQ, s.BIN_GUBUN,
-                          s.PLC_ADDRESS, s.ERP_BIN_CODE, s.USE_YN,
+                          s.PLC_ADDRESS, s.ERP_BIN_CODE, s.USEFLAG,
                           s.CHANGETTM, s.CHANGEBY)
                         ";
 

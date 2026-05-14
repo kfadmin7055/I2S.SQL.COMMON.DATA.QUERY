@@ -44,6 +44,9 @@
   <ItemGroup>
     <Compile Include="01.Base\Q_CAR_MASTER.cs" />
     <Compile Include="01.Base\Q_COMMON_CODE.cs" />
+    <Compile Include="10.Item\Q_MIXING_RECIPE_DETAIL.cs" />
+    <Compile Include="10.Item\Q_MIXING_RECIPE.cs" />
+    <Compile Include="10.Item\Q_MATERIAL.cs" />
     <Compile Include="10.Item\Q_PRODUCT.cs" />
     <Compile Include="20.Prod\Q_Bin.cs" />
     <Compile Include="20.Prod\Q_INGRED.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="00.Common\Q_UserCell.cs" />
     <Compile Include="00.Common\Q_UserInfo.cs" />
     <Compile Include="00.Common\Q_VendorAuth.cs" />
+    <Compile Include="99.Sample\Q_TableName.cs" />
     <Compile Include="ProductInfo\Q_Company.cs" />
     <Compile Include="ProductInfo\Q_Scale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

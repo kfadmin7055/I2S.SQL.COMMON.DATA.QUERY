@@ -35,7 +35,7 @@
                 , U_DTTM
                 , I_USER
                 , U_USER
-                , USE_YN
+                , USEFLAG
             FROM SCALE
             ";
 
@@ -82,7 +82,7 @@
                     , :PLCID          AS PLCID
                     , :PLCADDRESS     AS PLCADDRESS
                     , :SORT_SEQ       AS SORT_SEQ
-                    , :USE_YN         AS USE_YN
+                    , :USEFLAG         AS USEFLAG
                     , SYSDATE         AS CHANGEDTTM
                     , :USER_ID        AS CHANGEBY
                 FROM DUAL
@@ -103,7 +103,7 @@
                 , d.PLCID       = s.PLCID
                 , d.PLCADDRESS  = s.PLCADDRESS
                 , d.SORT_SEQ    = s.SORT_SEQ
-                , d.USE_YN      = s.USE_YN
+                , d.USEFLAG      = s.USEFLAG
                 , d.U_DTTM      = s.CHANGEDTTM
                 , d.U_USER      = s.CHANGEBY
 
@@ -120,7 +120,7 @@
                 , PLCID
                 , PLCADDRESS
                 , SORT_SEQ
-                , USE_YN
+                , USEFLAG
                 , I_DTTM
                 , I_USER
                 , U_DTTM
@@ -138,7 +138,7 @@
                 , s.PLCID
                 , s.PLCADDRESS
                 , s.SORT_SEQ
-                , s.USE_YN
+                , s.USEFLAG
                 , s.CHANGEDTTM
                 , s.CHANGEBY
                 , s.CHANGEDTTM

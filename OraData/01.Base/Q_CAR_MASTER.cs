@@ -25,7 +25,7 @@
                 , DELIVERY_EMP
                 , DELIVERTY_TEL
                 , ISREQUIRESEAL
-                , USE_YN
+                , USEFLAG
                 , U_USER
                 , U_DTTM
                 , I_DTTM
@@ -76,7 +76,7 @@
                     , :DELIVERY_EMP     AS DELIVERY_EMP
                     , :DELIVERTY_TEL    AS DELIVERTY_TEL
                     , :ISREQUIRESEAL    AS ISREQUIRESEAL
-                    , :USE_YN           AS USE_YN
+                    , :USEFLAG           AS USEFLAG
                     , SYSDATE           AS CHANGEDTTM
                     , :USER_ID          AS CHANGEBY
                 FROM DUAL
@@ -93,7 +93,7 @@
                 , d.DELIVERY_EMP    = s.DELIVERY_EMP
                 , d.DELIVERTY_TEL   = s.DELIVERTY_TEL
                 , d.ISREQUIRESEAL   = s.ISREQUIRESEAL
-                , d.USE_YN          = s.USE_YN
+                , d.USEFLAG          = s.USEFLAG
                 , d.U_USER          = s.CHANGEBY
                 , d.U_DTTM          = s.CHANGEDTTM
 
@@ -106,7 +106,7 @@
                 , DELIVERY_EMP
                 , DELIVERTY_TEL
                 , ISREQUIRESEAL
-                , USE_YN
+                , USEFLAG
                 , I_USER
                 , I_DTTM
             )
@@ -118,7 +118,7 @@
                 , s.DELIVERY_EMP
                 , s.DELIVERTY_TEL
                 , s.ISREQUIRESEAL
-                , s.USE_YN
+                , s.USEFLAG
                 , s.CHANGEBY
                 , s.CHANGEDTTM
             )
